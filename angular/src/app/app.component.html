@@ -1,1 +1,11 @@
 <router-outlet></router-outlet>
+<br />
+<br />
+<textarea
+  style="width: 300px; height: 500px"
+  [(ngModel)]="notificationData"
+></textarea>
+<br />
+
+<button (click)="sendNotification()">Send Notification</button>
+<button (click)="unsubscribe()">Unsubscribe</button>

@@ -14,4 +14,14 @@ export class AppController {
   getCities(): { name: string; image: string; alt: string }[] {
     return this.appService.getCities();
   }
+
+  @Post('subscription')
+  subscription(@Body() body: { sub: any }): any {
+    return this.appService.subscription(body);
+  }
+
+  @Post('notifications')
+  notifications(@Body() body: { data: any }) {
+    return this.appService.notifications(body);
+  }
 }

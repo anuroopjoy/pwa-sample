@@ -1,4 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { USER_SUBSCRIPTIONS } from './app.const';
+
+const webpush = require('web-push');
 
 const userMap = {
   admin: 'admin',
@@ -19,8 +22,23 @@ export class AppService {
       },
     ];
   }
+
   login({ username, password }): boolean {
     if (userMap[username] === password) return true;
     return false;
+  }
+
+  subscription({ sub }): any {
+    USER_SUBSCRIPTIONS.length = 0;
+    USER_SUBSCRIPTIONS.push(sub);
+    console.log(USER_SUBSCRIPTIONS);
+    return { message: 'Subscription added successfully' };
+  }
+
+  async notifications({ data }) {
+    await Promise.all(
+      USER_SUBSCRIPTIONS.map((sub) => webpush.sendNotification(sub, data)),
+    );
+    return { message: 'Notifications sent successfully' };
   }
 }
