@@ -16,9 +16,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, CapitalizePipe, HighlightDirective],
+  declarations: [
+    LoginComponent,
+    HomeComponent,
+    CapitalizePipe,
+    HighlightDirective,
+  ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     FormsModule,
     CommonModule,
     HttpClientModule,
